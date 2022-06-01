@@ -1,16 +1,21 @@
 <template>
-  <div class="nav">
-    <router-link to="/money"><Icon name="money"></Icon>记账</router-link>
-    
-    <router-link to="/labels"><Icon name="label"></Icon>标签</router-link>
-    
-    <router-link to="/statistics"> <icon name="statistics"></icon>统计 </router-link>
-  </div>
+  <nav>
+    <router-link to="/money" class="item"
+      ><Icon name="money"></Icon>记账</router-link
+    >
+
+    <router-link to="/labels" class="item"
+      ><Icon name="label"></Icon>标签</router-link
+    >
+
+    <router-link to="/statistics" class="item">
+      <icon name="statistics"></icon>统计
+    </router-link>
+  </nav>
 </template>
 
 <script lang="ts">
 //使用全部导入已经封装到Icon组件
-
 
 export default {
   name: "Nav",
@@ -22,7 +27,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav {
-  border: 1px solid red;
+nav {
+  display: flex;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  flex-direction: row;
+  font-size: 15px;
+  .item {
+    padding: 2px 0;
+    width: 33.3333%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
 }
 </style>
