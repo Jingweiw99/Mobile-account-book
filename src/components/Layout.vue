@@ -2,8 +2,8 @@
   <div class="nav-wrapper">
     <div class="content">
       <slot></slot>
-      <Nav></Nav>
     </div>
+     <Nav></Nav>
   </div>
 </template>
 
@@ -22,7 +22,6 @@ export default {
   height:100vh
 }
 .content {
-  border: 1px solid blue;
   overflow: auto;
   flex-grow: 1;
 }
