@@ -3,9 +3,11 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import Nav from '@/components/Nav.vue'
 
 Vue.config.productionTip = false
-
+//全局引入，任何地方直接用
+Vue.component('Nav', Nav)
 new Vue({
   router,
   store,
