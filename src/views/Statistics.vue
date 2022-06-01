@@ -1,35 +1,24 @@
 <template>
-  <div class="nav-wrapper">
-    <div class="content">
-      Statistics.vue
-      <Nav></Nav>
-    </div>
+  <div>
+      <Layout>  
+          Statistic.vue
+      </Layout>
   </div>
+  
 </template>
 
 <script lang="ts">
+
 export default {
-    name: 'Statistics',
+    name: "Statistics",
     data() {
-        return {
-
-        };
+        return {};
     },
-    methods: {
-
-    },
+    methods: {},
+    components: {  }
 };
 </script>
 
 <style lang="css" scoped>
-.nav-wrapper {
-  background-color: green;
-  display: flex;
-  flex-direction: column;
-}
-.content {
-  border: 1px solid blue;
-  overflow: auto;
-  flex-grow: 1;
-}
+
 </style>

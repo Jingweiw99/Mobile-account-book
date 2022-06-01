@@ -4,10 +4,12 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import Nav from '@/components/Nav.vue'
+import Layout from '@/components/Layout.vue'
 
 Vue.config.productionTip = false
 //全局引入，任何地方直接用
 Vue.component('Nav', Nav)
+Vue.component('Layout',Layout)
 new Vue({
   router,
   store,
