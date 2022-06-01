@@ -16,7 +16,7 @@ export default {
 
 <style lang="css" scoped>
 .nav-wrapper {
-  background-color: green;
+  
   display: flex;
   flex-direction: column;
   height:100vh
