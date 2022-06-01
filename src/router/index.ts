@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import Money from '@/views/Money.vue'
 import Labels from '@/views/Labels.vue'
 import Statistics from '@/views/Statistics.vue'
+import NotFound from '@/views/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes: Array<RouteConfig> = [
     component:Statistics
     
   },
+  {
+    //从上到下，除了上面页面。*
+    path:'*',
+    component:NotFound
+  }
 ]
 
 const router = new VueRouter({
