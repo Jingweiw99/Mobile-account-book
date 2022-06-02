@@ -1,29 +1,24 @@
 <template>
-  <div>
+  <div id="app">
     <router-view></router-view>
-   
   </div>
 </template>
 
 <style lang="scss">
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-body{
-  line-height: 1.5;
-}
-a{
-  text-decoration:none;
-  color:inherit;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import "~@/assets/style/reset.scss";
+@import '~@/assets/style/helper.scss';
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
+#app {
+  line-height: 1.5;
+  font-family:$font-hei;
+  //下面两个是一般是苹果上面好看一点
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333;
+}
 </style>
