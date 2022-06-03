@@ -8,10 +8,7 @@
 @import "~@/assets/style/reset.scss";
 @import '~@/assets/style/helper.scss';
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+
 
 #app {
   line-height: 1.5;
@@ -20,5 +17,10 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #333;
+}
+.clearfix::after{
+  content:'';
+  display:block;
+  clear:both;
 }
 </style>
