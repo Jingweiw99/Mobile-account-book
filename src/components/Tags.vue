@@ -4,9 +4,12 @@
       <button @click="newTag">新增标签</button>
     </div>
     <ul class="current">
-      <li v-for="tag in dataSource" :key="tag" 
-  :class="{selected:selectedTags.indexOf(tag)>=0}"
-      @click="toggle(tag)">
+      <li
+        v-for="tag in dataSource"
+        :key="tag"
+        :class="{ selected: selectedTags.indexOf(tag) >= 0 }"
+        @click="toggle(tag)"
+      >
         {{ tag }}
       </li>
     </ul>
@@ -20,22 +23,23 @@ export default class Tags extends Vue {
   @Prop() dataSource: string[] | undefined;
 
   selectedTags: string[] = [];
-  toggle(tag:string){
+  toggle(tag: string) {
     //找到tag的第一个索引
     const index = this.selectedTags.indexOf(tag);
-    if(index>=0){
-      this.selectedTags.splice(index,1);
-    }else{
+    if (index >= 0) {
+      this.selectedTags.splice(index, 1);
+    } else {
       this.selectedTags.push(tag);
     }
-    
+    this.$emit("update:value", this.selectedTags);
   }
-  newTag(){
-    const name = window.prompt('请输入标签名')
-    if(name == ''){
-      window.alert('标签名不能为空')
-    }else{
-      if(this.dataSource){
+  
+  newTag() {
+    const name = window.prompt("请输入标签名");
+    if (name == "") {
+      window.alert("标签名不能为空");
+    } else {
+      if (this.dataSource) {
         this.dataSource.push(name!);
       }
     }
@@ -55,7 +59,7 @@ export default class Tags extends Vue {
     flex-wrap: wrap;
 
     li {
-      $bg:#d9d9d9;
+      $bg: #d9d9d9;
       background-color: #d9d9d9;
       height: 24px;
       line-height: 24px;
@@ -63,9 +67,9 @@ export default class Tags extends Vue {
       padding: 0 14px;
       margin-right: 12px;
       margin: 4px;
-      &.selected{
-        background:_darken($bg,50%);
-        color:white;
+      &.selected {
+        background: _darken($bg, 50%);
+        color: white;
       }
     }
   }
