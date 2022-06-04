@@ -1,29 +1,36 @@
 <template>
-    <div class="tags">
-        <div class="new">
-          <button>新增标签</button>
-        </div>
-        <ul class="current">
-          <li>衣</li>
-          <li>食</li>
-          <li>住</li>
-          <li>行</li>
-        </ul>
-      </div>
+  <div class="tags">
+    <div class="new">
+      <button>新增标签</button>
+    </div>
+    <ul class="current">
+      <li v-for="tag in dataSource" :key="tag" 
+  :class="{selected:selectedTags.indexOf(tag)>=0}"
+      @click="toggle(tag)">
+        {{ tag }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
-export default {
-    name: 'Tags',
-    data() {
-        return {
+import { Vue, Component, Prop } from "vue-property-decorator";
+@Component
+export default class Tags extends Vue {
+  @Prop() dataSource: string[] | undefined;
 
-        };
-    },
-    methods: {
-
-    },
-};
+  selectedTags: string[] = [];
+  toggle(tag:string){
+    //找到tag的第一个索引
+    const index = this.selectedTags.indexOf(tag);
+    if(index>=0){
+      this.selectedTags.splice(index,1);
+    }else{
+      this.selectedTags.push(tag);
+    }
+    
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -38,6 +45,7 @@ export default {
     flex-wrap: wrap;
 
     li {
+      $bg:#d9d9d9;
       background-color: #d9d9d9;
       height: 24px;
       line-height: 24px;
@@ -45,6 +53,10 @@ export default {
       padding: 0 14px;
       margin-right: 12px;
       margin: 4px;
+      &.selected{
+        background:_darken($bg,50%);
+        color:white;
+      }
     }
   }
   .new {
