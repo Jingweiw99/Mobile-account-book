@@ -9,7 +9,7 @@
       <Types :value.sync="record.type"></Types>
       <Notes @update:value="onUpdateNotes"></Notes>
       <Tags :data-source.sync="tags" @update:value="onupdateTags"></Tags>
-    </Layout>
+    </Layout>  
   </div>
 </template>
 
@@ -20,11 +20,13 @@ import Types from "@/components/Types.vue";
 import Notes from "@/components/Notes.vue";
 import Tags from "@/components/Tags.vue";
 import { Component,Watch } from "vue-property-decorator";
+window.localStorage.setItem('version','1.0.0')
 var record = {
   tags: ["1", "2"],
   notes: "xxx",
   type: "-",
   amount: 100,
+  createdAt: Date
 };
 type Record = {
   tags: string[];
@@ -38,7 +40,9 @@ type Record = {
 export default class Money extends Vue {
   tags = ["衣", "食", "住", "行"];
   record: Record = { tags: [], notes: "", type: "+", amount: 0 };
-  recordList: Record[] = [];
+  recordList: Record[] = window.localStorage.getItem("recordList")
+    ? JSON.parse(window.localStorage.getItem("recordList") || "[]")
+    : [];
   onupdateTags(value: string[]) {
     this.record.tags = value;
   }
@@ -54,7 +58,7 @@ export default class Money extends Vue {
   saveRecord() {
     // 深拷贝 
     const record2 = JSON.parse(JSON.stringify(this.record));
-
+    record2.createdAt = new Date();
     this.recordList.push(record2);
     console.log(this.recordList);
     
