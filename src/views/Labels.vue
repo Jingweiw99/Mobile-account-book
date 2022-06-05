@@ -1,10 +1,10 @@
 <template>
   <div>
     <Layout>
-      <ul class="tags" v-for="tag in tags" :key="tag">
+      <ul class="tags" v-for="tag in tags" :key="tag.id">
         <li>
-          <span>{{ tag }}</span
-          ><Icon name="right"></Icon>
+          <span>{{ tag.name }}</span>
+          <Icon name="right"></Icon>
         </li>
       </ul>
       <div class="createTag-wrapper">
@@ -27,9 +27,7 @@ export default class Labels extends Vue {
     const name = window.prompt("请输入标签名");
     if (name) {
       const message = model2.create(name);
-      if (message) {
-        this.tags.push(name);
-      } else if (message === "duplicated") {
+        if (message === "duplicated") {
         alert("标签已存在");
       } else if (message === "success") {
         alert("标签添加成功");
