@@ -10,17 +10,19 @@
 
 
 
-#app {
+body {
   line-height: 1.5;
   font-family:$font-hei;
   //下面两个是一般是苹果上面好看一点
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #333;
+  background-color: #f5f5f5;
 }
 .clearfix::after{
   content:'';
   display:block;
   clear:both;
 }
+
 </style>
