@@ -20,11 +20,11 @@ import Types from "@/components/Types.vue";
 import Notes from "@/components/Notes.vue";
 import Tags from "@/components/Tags.vue";
 import { Component, Watch } from "vue-property-decorator";
-import model1 from "@/models/recordListModel";
-import model2 from "@/models/tagListModel";
+import recordListModel from "@/models/recordListModel";
+import tagListModel from "@/models/tagListModel";
 
-const recordList = model1.fetch();
-const tagList = model2.fetch();
+const recordList = recordListModel.fetch();
+const tagList = tagListModel.fetch();
 @Component({
   components: { Tags, Notes, Types, NumberPad },
 })
@@ -53,13 +53,13 @@ export default class Money extends Vue {
   }
   saveRecord() {
     // 深拷贝
-    const record2: RecordItem = model1.clone(this.record);
+    const record2: RecordItem = recordListModel.clone(this.record);
     record2.createdAt = new Date();
     this.recordList.push(record2);
   }
   @Watch("recordList")
   onRecordListChange() {
-    model1.save(this.recordList);
+    recordListModel.save(this.recordList);
   }
 }
 </script>

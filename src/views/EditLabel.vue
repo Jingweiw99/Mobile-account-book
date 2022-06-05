@@ -1,20 +1,22 @@
 <template>
     <layout >
-        编辑标签<span class="emoji">🥺🧐</span>
+        编辑标签
     </layout>
 </template>
 
 <script lang="ts">
-import Tags from "@/components/Tags.vue";
 import { Vue, Component } from "vue-property-decorator";
-import model2 from "@/models/tagListModel";
+import tagListModel from "@/models/tagListModel";
 @Component
 export default class EditLabel extends Vue {
     created(){
         const id = this.$route.params.id;
-        model2.fetch();
-        const tags = model2.data;
-        const tag =tags.filter(t=>t.id===id)[0];
+        tagListModel.fetch();
+        
+        const tags = tagListModel.data;
+      
+        const tag =tags.find(t=>t.id===id);
+        
         if(tag){
             console.log(tag);
         }else{
@@ -26,7 +28,5 @@ export default class EditLabel extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.emoji{
-    font-size: 35px;
-}
+
 </style>

@@ -9,14 +9,14 @@ type TagListModel = {
     create: (name: string) => 'success' | 'duplicated'  //string //联合类型 success成功 duplicated表示name重复
     save: () => void
 }
-const model2: TagListModel = {
+const tagListModel: TagListModel = {
     data: [],
 
     fetch() {
         this.data = JSON.parse(window.localStorage.getItem("localStorageKeyName") || "[]")
         return this.data;
     },
-    create(name: string) {
+    create(name) {
         const names = this.data.map(item => item.name)
         if (names.indexOf(name) >= 0) { return 'duplicated' }
         this.data.push({id: name, name: name})
@@ -28,4 +28,4 @@ const model2: TagListModel = {
     }
 }
 
-export default model2 
+export default tagListModel 
