@@ -31,7 +31,7 @@ import Button from "@/components/Button.vue";
   components: { FormItem, Button },
 })
 export default class EditLabel extends Vue {
-  tag?: { id: string; name: string } = { id: "", name: "" };
+  tag: { id: string; name: string } = { id: "", name: "" };
   created() {
     const id = this.$route.params.id;
     tagListModel.fetch();
@@ -52,12 +52,16 @@ export default class EditLabel extends Vue {
 
   remove(){
     if (this.tag) {
-      tagListModel.remove(this.tag.id);
+      if(tagListModel.remove(this.tag.id)){
+        this.$router.replace("/labels");
+      }else{
+        alert('删除失败')
+      }
     }
   }
 
   goBack(){
-    console.log('back')
+    
     this.$router.back();
   }
 }
