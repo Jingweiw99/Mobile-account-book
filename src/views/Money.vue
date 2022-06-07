@@ -7,7 +7,9 @@
       ></NumberPad>
       <!-- <Types :value="record.type" @update:value="onUpdateType"></Types>等价于下面的 -->
       <Types :value.sync="record.type"></Types>
-      <Notes @update:value="onUpdateNotes"></Notes>
+      <Notes field-name="备注" 
+      placeholder="在这里输入备注" 
+      @update:value="onUpdateNotes"></Notes>
       <Tags :data-source.sync="tags" @update:value="onupdateTags"></Tags>
     </Layout>
   </div>
