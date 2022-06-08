@@ -1,7 +1,6 @@
 <template>
   <div>
     <Layout class-prefix="layout">
-      {{record}}
       <NumberPad
         @update:value="onUpdateAmount"
         @submit="saveRecord"
