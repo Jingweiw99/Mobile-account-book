@@ -19,48 +19,39 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import tagListModel from "@/models/tagListModel";
-import FormItem from "@/components/FormItem.vue";
-import Button from "@/components/Button.vue";
-
-@Component({
-  components: { FormItem, Button },
-})
-export default class EditLabel extends Vue {
-  tag: { id: any; name: string } = { id: "", name: "" };
-  created() {
-    const id = this.$route.params.id;
-    tagListModel.fetch();
-    const tags = tagListModel.data;
-    const tag = tags.find((t) => t.id === id);
-    if (tag) {
-      this.tag = tag;
-    } else {
-      this.$router.replace("/404");
-    }
-  }
-
-  update( name: string) {
-    if (this.tag){
-      tagListModel.update(this.tag.id, name);
-    }
-  }
-
-  remove() {
-    if (this.tag) {
-      if (tagListModel.remove(this.tag.id)) {
-        this.$router.replace("/labels");
-      } else {
-        alert("删除失败");
+  import Vue from 'vue';
+  import {Component} from 'vue-property-decorator';
+  import FormItem from '@/components/FormItem.vue';
+  import Button from '@/components/Button.vue';
+  @Component({
+    components: {Button, FormItem}
+  })
+  export default class EditLabel extends Vue {
+    tag?: Tag = undefined;
+    created() {
+      this.tag = window.findTag(this.$route.params.id);
+      if (!this.tag) {
+        this.$router.replace('/404');
       }
     }
+    update(name: string) {
+      if (this.tag) {
+        window.updateTag(this.tag.id,name);
+      }
+    }
+    remove() {
+      if (this.tag) {
+        if (window.removeTag(this.tag.id)) {
+          this.$router.back();
+        } else {
+          window.alert('删除失败');
+        }
+      }
+    }
+    goBack() {
+      this.$router.back();
+    }
   }
-
-  goBack() {
-    this.$router.back();
-  }
-}
 </script>
 
 <style lang="scss" scoped>

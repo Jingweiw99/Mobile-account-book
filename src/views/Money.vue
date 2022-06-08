@@ -27,7 +27,7 @@ import FormItem from "@/components/FormItem.vue";
 import Tags from "@/components/Tags.vue";
 import { Component, Watch } from "vue-property-decorator";
 import recordListModel from "@/models/recordListModel";
-import tagListModel from "@/models/tagListModel";
+
 
 const recordList = recordListModel.fetch();
 @Component({
@@ -61,7 +61,7 @@ export default class Money extends Vue {
   }
 
   @Watch("recordList")
-  onRecordListChange(recordList: RecordItem[]) {
+  onRecordListChange() {
     recordListModel.save(recordList);
   }
 }

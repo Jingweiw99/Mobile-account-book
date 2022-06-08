@@ -20,7 +20,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 @Component
 export default class Tags extends Vue {
-  @Prop() dataSource: string[] | undefined;
+  @Prop() readonly dataSource: string[] | undefined;
 
   selectedTags: string[] = [];
   toggle(tag: string) {

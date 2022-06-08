@@ -1,20 +1,18 @@
 import createId from '@/lib/createId'
-const localStorageKeyName = 'tagList'
-
+const localStorageKeyName = 'tagList';
 const tagListModel: TagListModel = {
   data: [],
-
   fetch() {
-    this.data = JSON.parse(window.localStorage.getItem(localStorageKeyName) || "[]")
+    this.data = JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]');
     return this.data;
   },
   create(name) {
-    const names = this.data.map(item => item.name)
-    if (names.indexOf(name) >= 0) { return 'duplicated' }
+    // this.data = [{id:'1', name:'1'}, {id:'2', name:'2'}]
+    const names = this.data.map(item => item.name);
+    if (names.indexOf(name) >= 0) {return 'duplicated';}
     const id = createId().toString();
-    this.data.push({ id, name: name })
-    
-    this.save()
+    this.data.push({id, name: name});
+    this.save();
     return 'success';
   },
   update(id, name) {
