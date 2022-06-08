@@ -28,6 +28,7 @@
     components: {Button, FormItem}
   })
   export default class EditLabel extends Vue {
+
     tag?: Tag = undefined;
     created() {
       this.tag = store.findTag(this.$route.params.id);
@@ -37,7 +38,7 @@
     }
     update(name: string) {
       if (this.tag) {
-        store.updateTag(this.tag.id,name);
+        store.updateTag(this.tag.id, name);
       }
     }
     remove() {
@@ -53,6 +54,7 @@
       this.$router.back();
     }
   }
+  
 </script>
 
 <style lang="scss" scoped>
