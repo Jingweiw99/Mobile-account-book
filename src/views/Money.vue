@@ -14,7 +14,7 @@
         @update:value="onUpdateNotes"
       ></FormItem>
 
-      <Tags :data-source.sync="tags" @update:value="onupdateTags"></Tags>
+      <Tags></Tags>
     </Layout>
   </div>
 </template>
@@ -26,36 +26,31 @@ import Types from "@/components/Types.vue";
 import FormItem from "@/components/FormItem.vue";
 import Tags from "@/components/Tags.vue";
 import { Component } from "vue-property-decorator";
-import store from '@/store/index2'
+
 
 @Component({
-  components: { Tags, FormItem, Types, NumberPad },
-})
-export default class Money extends Vue {
-  tags = store.tagList;
-  recordList = store.recordList;
-  record: RecordItem = {
-    tags: [],
-    notes: "",
-    type: "+",
-    amount: 0,
-    createdAt: new Date(),
-  };
-
-  onupdateTags(value: string[]) {
-    this.record.tags = value;
-  }
-  onUpdateNotes(value: string) {
-    this.record.notes = value;
-  }
- 
-  onUpdateAmount(value: string) {
+    components: {Tags, FormItem, Types, NumberPad},
+  })
+  export default class Money extends Vue {
+    get recordList() {
+      return this.$store.state.recordList;
+    }
+    record: RecordItem = {
+      tags: [], notes: '', type: '-', amount: 0
+    };
+    created() {
+      this.$store.commit('fetchRecords');
+    }
+    onUpdateNotes(value: string) {
+      this.record.notes = value;
+    }
+    saveRecord() {
+      this.$store.commit('createRecord', this.record);
+    }
+    onUpdateAmount(value: string) {
     this.record.amount = parseFloat(value);
   }
-  saveRecord() {
-    store.createRecord(this.record);
   }
-}
 </script>
 
 
