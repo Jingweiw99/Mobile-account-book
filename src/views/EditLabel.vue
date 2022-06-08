@@ -1,8 +1,7 @@
 <template>
   <layout>
     <div class="navBar">
-      <Icon class="leftIcon" name="left" 
-      @click="goBack"/>
+      <Icon class="leftIcon" name="left" @click="goBack" />
       <span class="title">编辑标签</span>
       <span class="rightIcon"></span>
     </div>
@@ -14,9 +13,7 @@
       />
     </div>
     <div class="button-wrapper">
-      <Button
-      @click="remove"
-      >删除标签</Button>
+      <Button @click="remove">删除标签</Button>
     </div>
   </layout>
 </template>
@@ -31,7 +28,7 @@ import Button from "@/components/Button.vue";
   components: { FormItem, Button },
 })
 export default class EditLabel extends Vue {
-  tag: { id: string; name: string } = { id: "", name: "" };
+  tag: { id: any; name: string } = { id: "", name: "" };
   created() {
     const id = this.$route.params.id;
     tagListModel.fetch();
@@ -44,24 +41,23 @@ export default class EditLabel extends Vue {
     }
   }
 
-  update(name: string) {
-    if (this.tag) {
+  update( name: string) {
+    if (this.tag){
       tagListModel.update(this.tag.id, name);
     }
   }
 
-  remove(){
+  remove() {
     if (this.tag) {
-      if(tagListModel.remove(this.tag.id)){
+      if (tagListModel.remove(this.tag.id)) {
         this.$router.replace("/labels");
-      }else{
-        alert('删除失败')
+      } else {
+        alert("删除失败");
       }
     }
   }
 
-  goBack(){
-    
+  goBack() {
     this.$router.back();
   }
 }
