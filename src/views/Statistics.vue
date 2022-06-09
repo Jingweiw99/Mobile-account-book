@@ -72,8 +72,8 @@
         }
       }
       result.map(group => {
-        group.total = group.items.reduce((sum, item) => {
-         
+        group.total = group.items.reduceRight((sum, item) => {
+          console.log(sum + item.amount)
           return sum + item.amount;
         }, 0);
       });
