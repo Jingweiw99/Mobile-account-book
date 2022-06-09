@@ -1,21 +1,18 @@
 <template>
-  <div>
-    <Layout class-prefix="layout">
-      <NumberPad
-        @update:value="onUpdateAmount"
-        @submit="saveRecord"
-      ></NumberPad>
+  <Layout>
+    <div class="wrapper-content">
+      <Tags />
+      <div class="notes">
+        <FormItem
+          field-name="备注"
+          placeholder="在这里输入备注"
+          @update:value="onUpdateNotes"
+        />
+      </div>
       <Tabs :data-source="recordTypeList" :value.sync="record.type" />
-     
-
-      <FormItem
-        placeholder="在这里输入备注"
-        @update:value="onUpdateNotes"
-      ></FormItem>
-
-      <Tags></Tags>
-    </Layout>
-  </div>
+      <NumberPad :value.sync="record.amount" @submit="saveRecord" />
+    </div>
+  </Layout>
 </template>
 
 <script lang="ts">
@@ -25,10 +22,9 @@ import FormItem from "@/components/FormItem.vue";
 import Tags from "@/components/Tags.vue";
 import { Component } from "vue-property-decorator";
 import Tabs from "@/components/Tabs.vue";
-import recordTypeList from "@/constants/recordTypeList"
-
+import recordTypeList from "@/constants/recordTypeList";
 @Component({
-  components: { Tags, FormItem,  NumberPad,Tabs },
+  components: { Tabs, Tags, FormItem, NumberPad },
 })
 export default class Money extends Vue {
   get recordList() {
@@ -50,24 +46,19 @@ export default class Money extends Vue {
   saveRecord() {
     this.$store.commit("createRecord", this.record);
   }
-  onUpdateAmount(value: string) {
-    this.record.amount = parseFloat(value);
-  }
 }
 </script>
 
-
-
-<style lang="scss">
-// .layout-wrapper{
-
-// }
-.layout-content {
-  display: flex;
-  flex-direction: column-reverse;
-}
-</style>
-
-
 <style lang="scss" scoped>
+.wrapper-content {
+   
+  display: flex;
+  flex-direction: column;
+  .tags{
+    padding-top:233px;
+  }
+}
+.notes {
+  padding: 16px, 0;
+}
 </style>

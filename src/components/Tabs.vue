@@ -1,5 +1,5 @@
 <template>
-  <ul class="tabs" :class="{[classPrefix+'-tabs']:classPrefix}">
+  <ul class="tabs">
     <li v-for="item in dataSource" :key="item.value"
         :class="liClass(item)" @click="select(item)">{{item.text}}
     </li>
@@ -18,6 +18,8 @@
     readonly value!: string;
     @Prop(String)
     classPrefix?: string;
+    @Prop({type:String,default:'64px'})
+    height!:string;
     liClass(item: DataSourceItem) {
       return {
         [this.classPrefix + '-tabs-item']: this.classPrefix,
